@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  同步代码:
+  sync-code:
     runs-on: ubuntu-latest
     steps:
       - name: 检出目标仓库
@@ -33,9 +33,9 @@ jobs:
           git push --force --all "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           git push --force --tags "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
 
-  同步Releases:
+  sync-releases:
     runs-on: ubuntu-latest
-    needs: 同步代码
+    needs: sync-code
     steps:
       - name: 检出目标仓库
         uses: actions/checkout@v4
